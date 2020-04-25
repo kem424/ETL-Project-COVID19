@@ -152,3 +152,13 @@ The data source is https://www.eia.gov/petroleum/data.php which is U.S. Energy I
 4) Renaming the old titles into clear names.
 5) Imported a second csv file for retail price of oil, filter the table to only show the states, rename the titles and save       them to a new table.
 
+<ins>**Unemployment**</ins><br/>
+### Data Extraction: 
+
+The data source we used was https://www.bls.gov/web/laus/lauhsthl.htm , which came from the U.S. Bureau of Labor Statistics. This website provided us with a HTML file. 
+
+#### Data Transformation:
+1) Import the HTML file on Jupyter notebook and print the table to understand how the data is formatted 
+2) Isolate and identify the columns that we are measuring and create a new dataframe with this data
+3) Renaming the old titles into names that are cohesive with other data sets
+4) Create a new table with this data 
