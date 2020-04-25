@@ -116,16 +116,16 @@ The data source is "yfinance" module, which is a python library that scrapes dat
 <ins>**Hospital Beds**</ins><br/>
 #### Data Extraction:
 
-1.)	Panda’s read_CSV to read csv file form Kaggle data set.
-2.)	CSV was downloaded direct to resource folder and used. 
+1)	Panda’s read_CSV to read csv file form Kaggle data set.
+2)	CSV was downloaded direct to resource folder and used. 
 
 ![](Images/)
 
 
 #### Data Transformation:
-1.)	After loading CSV to data frame reduced data frame for data of interest.
-2.)	Data frame was further filtered for US and US state to keep data limited to US.
-3.)	Used aggregation/grouped by function and to convert bed per 1000 population by states.
+1)	After loading CSV to data frame reduced data frame for data of interest.
+2)	Data frame was further filtered for US and US state to keep data limited to US.
+3)	Used aggregation/grouped by function and to convert bed per 1000 population by states.
 
 ![](Images/)
 
