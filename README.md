@@ -154,5 +154,5 @@ The data source we used was https://www.bls.gov/web/laus/lauhsthl.htm , which ca
 2) Using sqlalchemy create-engine , connection was set up with the postgres database.
 3) Using pandas to_sql(), data was inserted into the tables.
 
-![ERD.PNG](Images/ERD.PNG)
+![ERD.PNG](Images/ERD.png)
 
