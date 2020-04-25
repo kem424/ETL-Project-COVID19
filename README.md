@@ -56,17 +56,8 @@ The data source is wikipedia. https://en.wikipedia.org/wiki/List_of_states_and_t
 
 <ins>**Country_Cases Table**</ins><br/>
 #### Data Extraction:
-The data source is an API end point https://api.covid19api.com/country/{country} 
 
-<<<<< Insert a snip of the API data >>>>>
-
-1) Using Requests module, response was received from the API endpoint,with start and end date as parameters.
-2) Country_ID column from the Country Table was used to do call this API for every single country between January 22, 2020 and April 24, 2020.
-3) The data retrived was stored in a Data Frame.
-
-<<<<< Insert a snip of the API call code >>>>>
-
-<<<<< Insert a snip of the Data Frame>>>>>
+The data source is a CSV file.Using Padas read_csv,data was imported from the CSV to display as data frame.
 
 #### Data Transformation:
 
@@ -119,28 +110,16 @@ The data source is "yfinance" module, which is a python library that scrapes dat
 1)	Panda’s read_CSV to read csv file form Kaggle data set.
 2)	CSV was downloaded direct to resource folder and used. 
 
-![](Images/)
-
 
 #### Data Transformation:
 1)	After loading CSV to data frame reduced data frame for data of interest.
 2)	Data frame was further filtered for US and US state to keep data limited to US.
 3)	Used aggregation/grouped by function and to convert bed per 1000 population by states.
 
-![](Images/)
+![Hospital_transformation.PNG](Images/Hospital_transformation.PNG)
 
 
-### Data Load:
-
-1) Created tables in postgres database.
-2) Using sqlalchemy create-engine , connection was set up with the postgres database.
-3) Using pandas to_sql(), data was inserted into the tables.
-
-<< insert the database ERD >>
-
-<< insert the database ERD >>
-
-<ins>**Impact on Oil**</ins><br/>
+<ins>**Gas_Price table**</ins><br/>
 ### Data Extraction: 
 The data source is https://www.eia.gov/petroleum/data.php which is U.S. Energy Information Administration. This website provided us with several cvs files. 
 
@@ -150,15 +129,30 @@ The data source is https://www.eia.gov/petroleum/data.php which is U.S. Energy I
 2) Merged the data sets oil production and stock by date.
 3) Isolated the coloumns that we are measuring and saving them to a new variable.
 4) Renaming the old titles into clear names.
-5) Imported a second csv file for retail price of oil, filter the table to only show the states, rename the titles and save       them to a new table.
+5) Imported a second csv file for retail price of oil, filter the table to only show the states, rename the titles and save them to a new table.
 
-<ins>**Unemployment**</ins><br/>
+![gas_price_transformation.PNG](Images/gas_price_transformation.PNG)
+
+<ins>**US_Unemployment_Stats Table**</ins><br/>
 ### Data Extraction: 
-
 The data source we used was https://www.bls.gov/web/laus/lauhsthl.htm , which came from the U.S. Bureau of Labor Statistics. This website provided us with a HTML file. 
 
 #### Data Transformation:
-1) Import the HTML file on Jupyter notebook and print the table to understand how the data is formatted 
-2) Isolate and identify the columns that we are measuring and create a new dataframe with this data
-3) Renaming the old titles into names that are cohesive with other data sets
-4) Create a new table with this data 
+1) Import the HTML file on Jupyter notebook and print the table to understand how the data is formatted. 
+2) Isolate and identify the columns that we are measuring and create a new dataframe with this data.
+3) Dropped unwanted rows.
+4) Mapped the State name with a dictionary of state name and abbreviation , to get the abbreviation and store it in a new State ID column.
+5) Renaming the old titles into names that are cohesive with other data sets.
+6) Create a new table with this data.
+
+![Unemployment_Trans_1.PNG](Images/Unemployment_Trans_1.PNG)
+![Unemployment_Trans_2.PNG](Images/Unemployment_Trans_2.PNG)
+
+### Data Load:
+
+1) Created tables in postgres database.
+2) Using sqlalchemy create-engine , connection was set up with the postgres database.
+3) Using pandas to_sql(), data was inserted into the tables.
+
+![ERD.PNG](Images/ERD.PNG)
+
