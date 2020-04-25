@@ -14,6 +14,8 @@ Our group has decided to focus this project on the major topic of the moment - C
 ### ETL:
 
 ![ETL.PNG](Images/ETL.PNG)
+<br/>
+![ERD.PNG](Images/ERD.png)
 
 <ins>**Country Table**</ins><br/>
 #### Data Extraction:
