@@ -134,7 +134,8 @@ The data source is https://www.eia.gov/petroleum/data.php which is U.S. Energy I
 5) The data presented had columns for each state and the retail gas prices, where as in the final sql table we needed those as a row.
 6) In order to handle this , we created an array of states, looped through the array to create data frame for the specific state and write that to the sql table, by appending data each time.
 
-![gas_price_transformation.PNG](Images/gas_price_transformation.PNG)
+![gas_price_transformation2.PNG](Images/gas_price_transformation2.PNG)
+![gas_price_transformation3.PNG](Images/gas_price_transformation3.PNG)
 
 <ins>**US_Unemployment_Stats Table**</ins><br/>
 ### Data Extraction: 
