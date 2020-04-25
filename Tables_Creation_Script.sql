@@ -82,7 +82,7 @@ FOREIGN KEY(State_ID) REFERENCES State(State_ID));
 
 Create table Hospital_Beds
 (State_ID              	char(2),
-Beds_per_K_Popln        int,
+Beds			      int,
 FOREIGN KEY(State_ID) REFERENCES State(State_ID));
 
 Create table gas_price
