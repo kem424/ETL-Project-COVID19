@@ -138,3 +138,17 @@ The data source is "yfinance" module, which is a python library that scrapes dat
 
 << insert the database ERD >>
 
+<< insert the database ERD >>
+
+<ins>**Impact on Oil**</ins><br/>
+### Data Extraction: 
+The data source is https://www.eia.gov/petroleum/data.php which is U.S. Energy Information Administration. This website provided us with several cvs files. 
+
+#### Data Transformation:
+1) Downloaded the cvs files. 
+3) Imported the cvs files to jupyter notebook.
+2) Merged the data sets oil production and stock by date.
+3) Isolated the coloumns that we are measuring and saving them to a new variable.
+4) Renaming the old titles into clear names.
+5) Imported a second csv file for retail price of oil, filter the table to only show the states, rename the titles and save       them to a new table.
+
