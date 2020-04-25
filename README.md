@@ -164,3 +164,23 @@ The data source we used was https://www.bls.gov/web/laus/lauhsthl.htm , which ca
 1) Created tables in postgres database.
 2) Using sqlalchemy create-engine , connection was set up with the postgres database.
 3) Using pandas to_sql(), data was inserted into the tables.
+
+
+
+### Data Retrieval
+In order to conclude the project, we thought would be interesting to perform some sql queries on our Covid-19 DB to confirm the data was loaded properly and tables can be join in order to perform aggregated queries.
+
+<ins>**US States Cases and Hospital Beds (per K population)**</ins>
+![State_Corona_Cases.PNG](Images/Query_states_cases_hospital.PNG)
+<br/>
+
+<ins>**US States Cases and Unemployment rate for march 2020**</ins>
+![State_Corona_Cases_vs_Unemployment.PNG](Images/Query_states_cases_unemployment.PNG)
+<br/>
+
+<ins>**Weekly Gas prices**</ins>
+![Weekly_Gas_Prices_per_State.PNG](Images/Query_states_Gas_price.PNG)
+<br/>
+
+<ins>**Country Cases Vs Index price change**</ins>
+![Country_Cases_vs_Index_Prices.PNG](Images/Query_Country_cases_index.PNG)
