@@ -21,7 +21,7 @@ The data source is a json file from https://worldpopulationreview.com/
 
 ![Country_source.PNG](Images/Country_source.PNG)
 
-1) Json library was used to handle the file.
+1) Json library was used to load the file.
 2) We looped through the json to append the values to arrays previously created. 
 3) From there we created a Data Frame.
 
@@ -47,8 +47,7 @@ The data source is wikipedia. https://en.wikipedia.org/wiki/List_of_states_and_t
 1) The table scraped from Wikipedia had two levels of column headers so we dropped the top one.
 2) Dropped columns that we don't need in the data frame.
 3) Renamed columns to friendly names.
-4) Used a dictionary with state abreviations and names, converted it to a dataframe.
-5) Merged the state and name Data Frame with the previous data frame to add abreviations to the State Table.
+4) Used a dictionary with state abreviations and names, to map state name andget state id to be populated in the main data frame.
 
 ![State_transformation1.PNG](Images/State_transformation1.PNG)
 
@@ -56,14 +55,15 @@ The data source is wikipedia. https://en.wikipedia.org/wiki/List_of_states_and_t
 
 <ins>**Country_Cases Table**</ins><br/>
 #### Data Extraction:
+The data source is a CSV file.
 
-The data source is a CSV file.Using Padas read_csv,data was imported from the CSV to display as data frame.
+1) Using Padas read_csv,data was imported from the CSV.
+2) A data frame was created.
 
 #### Data Transformation:
 
-1) For the Country_Case Table we had a small issue with the API which was that for some Countries the level of information was down to the city. So in order to fix this issue, we have use an aggregator function, we grouped by Country and date and got the sum of the confirmed, deaths, recovered and active cases.
-2) Converted the timestamp returned by the API to a Date format.
-3) Set CountryID and Date as the index.
+1) selected only the desired columns from the data set and stored it in data frame.
+2) Renamed columns to friendly names.
 
 << insert some code snippets >>
 
@@ -79,7 +79,7 @@ The data source is an API end point https://covidtracking.com/api/v1/states/dail
 
 
 #### Data Transformation:
-1) For the US_States_Cases Table the json data returned from API was not consistent . For example , if for a day there are no positive cases , the json data did not have the key altogether. In order to fix this issue, try - except code bloack was used, when the key is now fund, and store the value as "0".
+1) For the US_States_Cases Table the json data returned from API was not consistent . For example , if for a day there are no positive cases , the json data did not have the key altogether. In order to fix this issue, try - except code bloack was used, when the key is not found, store the value as "0".
 2) Converted the date returned by the API from string to Date format.
 
 ![US_States_cases_Transformation.PNG](Images/US_States_cases_Transformation.PNG)
@@ -92,13 +92,13 @@ The data source is "yfinance" module, which is a python library that scrapes dat
 
 1) We needed to pip install yfinance.
 2) We created a dictionary to hold the ticker and country code for major world indices.
-2) Using a For loop , and the yfinance module, data was received for each of the ticker passed from the previously cretaed dictionary.
+3) Using a For loop , and the yfinance module, data frame was created for each of the ticker.
 
 ![Ticker_source.PNG](Images/Ticker_source.PNG)
 
 
 #### Data Transformation:
-1) Data Frame returned from yfinance module did not have the Index Ticker, name and County. Using a dictionary converted dataframe and  a for loop to iterate through the dataframe , new columns were added to the main Data Frames. 
+1) Data Frame returned from yfinance module did not have the Index Ticker, name and County. Using a dictionary and a for loop to iterate through it , new columns were added to the main Data Frames. 
 2) Reset Index on the Data Frame, that previously had Date as the index.
 
 ![Ticker_transformation.PNG](Images/Ticker_transformation.PNG)
@@ -107,43 +107,49 @@ The data source is "yfinance" module, which is a python library that scrapes dat
 <ins>**Hospital Beds**</ins><br/>
 #### Data Extraction:
 
-1)	Panda’s read_CSV to read csv file form Kaggle data set.
-2)	CSV was downloaded direct to resource folder and used. 
+1)	Pandas read_CSV was used to read csv file form Kaggle data set.
+2)	CSV was downloaded directly to resources folder and used. 
 
 
 #### Data Transformation:
-1)	After loading CSV to data frame reduced data frame for data of interest.
-2)	Data frame was further filtered for US and US state to keep data limited to US.
-3)	Used aggregation/grouped by function and to convert bed per 1000 population by states.
+1)	After loading CSV to data frame, reduced data frame for data of interest.
+2)	Data frame was further filtered for US states to keep data limited to US.
+3)	Used aggregation/group by function and to get total bed per 1000 population by states.
 
 ![Hospital_transformation.PNG](Images/Hospital_transformation.PNG)
 
 
 <ins>**Gas_Price table**</ins><br/>
 ### Data Extraction: 
-The data source is https://www.eia.gov/petroleum/data.php which is U.S. Energy Information Administration. This website provided us with several cvs files. 
+The data source is https://www.eia.gov/petroleum/data.php which is U.S. Energy Information Administration. 
+
+1) This website provided us with several csv files.
+2) Pandas read_CSV was used to read csv file and created data frame.
 
 #### Data Transformation:
-1) Downloaded the cvs files. 
-3) Imported the cvs files to jupyter notebook.
-2) Merged the data sets oil production and stock by date.
-3) Isolated the coloumns that we are measuring and saving them to a new variable.
-4) Renaming the old titles into clear names.
-5) Imported a second csv file for retail price of oil, filter the table to only show the states, rename the titles and save them to a new table.
+1) Merged the data sets oil production and stock by date.
+2) Isolated the coloumns that we are measuring and saving them to a new variable.
+3) Renaming the old titles into clear names.
+4) Imported a second csv file for retail price of oil, filter the table to only show the states, rename the titles and save them to a new data frame.
+5) The data presented had columns for each state and the retail gas prices, where as in the final sql table we needed those as a row.
+6) In order to handle this , we created an array of states, looped through the array to create data frame for the specific state and write that to the sql table, by appending data each time.
 
 ![gas_price_transformation.PNG](Images/gas_price_transformation.PNG)
 
 <ins>**US_Unemployment_Stats Table**</ins><br/>
 ### Data Extraction: 
-The data source we used was https://www.bls.gov/web/laus/lauhsthl.htm , which came from the U.S. Bureau of Labor Statistics. This website provided us with a HTML file. 
+The data source we used was https://www.bls.gov/web/laus/lauhsthl.htm , which came from the U.S. Bureau of Labor Statistics. 
+
+1) Pandas scraping (pandas.read_html) was used.
+2) The table information sourced from the website was stored in a Data Frame.
 
 #### Data Transformation:
 1) Import the HTML file on Jupyter notebook and print the table to understand how the data is formatted. 
 2) Isolate and identify the columns that we are measuring and create a new dataframe with this data.
 3) Dropped unwanted rows.
-4) Mapped the State name with a dictionary of state name and abbreviation , to get the abbreviation and store it in a new State ID column.
-5) Renaming the old titles into names that are cohesive with other data sets.
-6) Create a new table with this data.
+4) Renamed the old titles into names that are cohesive with other data sets.
+5) Mapped the State name with a dictionary of state name and abbreviation , to get the abbreviation and store it in a new State ID column.
+
 
 ![Unemployment_Trans_1.PNG](Images/Unemployment_Trans_1.PNG)
 ![Unemployment_Trans_2.PNG](Images/Unemployment_Trans_2.PNG)
