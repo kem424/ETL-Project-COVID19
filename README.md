@@ -67,7 +67,7 @@ The data source is a CSV file.
 2) Droped unwanted columns and renamed columns to friendly names.
 3) Used the pycountry library to create a Country_id column based on the iso_code. This will allow future users to join with the Country table when querying the DB.
 
-![Country_Cases_transformation2.PNG](Images/Country_Cases_transformation.PNG)
+![Country_Cases_transformation2.PNG](Images/country_cases_transformation.PNG)
 
 <ins>**US_States_Cases Table**</ins><br/>
 #### Data Extraction:
