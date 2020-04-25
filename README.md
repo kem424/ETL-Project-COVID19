@@ -57,15 +57,17 @@ The data source is wikipedia. https://en.wikipedia.org/wiki/List_of_states_and_t
 #### Data Extraction:
 The data source is a CSV file.
 
-1) Using Padas read_csv,data was imported from the CSV.
+1) Using Padas read_csv,data was imported from the CSV. This data source has data from 3/13/2020 to 4/24/2020.  
 2) A data frame was created.
+
 
 #### Data Transformation:
 
 1) selected only the desired columns from the data set and stored it in data frame.
-2) Renamed columns to friendly names.
+2) Droped unwanted columns and renamed columns to friendly names.
+3) Used the pycountry library to create a Country_id column based on the iso_code. This will allow future users to join with the Country table when querying the DB.
 
-<< insert some code snippets >>
+![Country_Cases_transformation2.PNG](Images/Country_Cases_transformation.PNG)
 
 <ins>**US_States_Cases Table**</ins><br/>
 #### Data Extraction:
